@@ -10,15 +10,16 @@ namespace FirstProject.Pages.Usuarios
 {
     public class CadastrarModel : PageModel
     {
-        public Usuario usuario;
+        [BindProperty]
+        public Usuario Usuario { get; set; }
 
         public void OnGet(string nome, string senha)
         {
-            usuario = new Usuario
-            {
-                Nome = nome,
-                Senha = senha
-            };
+            if(Usuario == null ){
+                Usuario = new Usuario();
+            }
+            Usuario.Nome = nome;
+            Usuario.Senha = senha;
         }
     }
 }
