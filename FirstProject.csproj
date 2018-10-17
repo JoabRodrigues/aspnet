@@ -15,6 +15,7 @@
   <ItemGroup>
     <Content Remove="Pages\Usuarios\Index.cshtml" />
     <Content Remove="libman.json" />
+    <Content Remove="Pages\Shared\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Pages\Usuarios\Index.cshtml.cs" />

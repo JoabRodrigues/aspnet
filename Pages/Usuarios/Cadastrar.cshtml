@@ -6,14 +6,16 @@
 
 <div class="container">
     <h2>Cadastrar</h2>
-    <form onsubmit="return valida()">
+    <form method="post" onsubmit="return valida()">
         <div class="form-group">
-            <label for="nome">Nome</label>
-            <input type="text" class="form-control" id="nome" name="Usuario.nome" placeholder="Nome" value="@Model.Usuario.Nome" />
+            <label asp-for="Usuario.Nome">Nome</label>
+            <input type="text" class="form-control" asp-for="Usuario.Nome" placeholder="Nome" />
+            <span asp-validation-for="Usuario.Nome" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label for="email">E-mail</label>
-            <input type="text" class="form-control" id="email" name="Usuario.email" placeholder="Email" value="@Model.Usuario.Email" />
+            <label asp-for="Usuario.Email">E-mail</label>
+            <input type="text" class="form-control" asp-for="Usuario.Email" placeholder="Email" />
+            <span asp-validation-for="Usuario.Email" class="text-danger"></span>
         </div>
         <div class="form-group">
             <label for="cpf">CPF</label>
@@ -22,6 +24,44 @@
         <div class="form-group">
             <label for="datanascimento">Data Nascimento</label>
             <input type="date" class="form-control" id="datanascimento" name="Usuario.DataNascimento" placeholder="Data Nascimento" value="@Model.Usuario.DataNascimento" />
+        </div>
+        <div class="form-group">
+            <label>CEP</label>
+            <input type="number" name="Cep" id="Cep" class="form-control" placeholder="CEP" />
+            <button class="btn btn-primary"  type="button" onclick="buscaEndereco()">Buscar</button>
+            <div class="collapse" id="collapseExample">
+                <div class="card card-body" id="ender">
+                    texto qualquer
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="collapse" id="collapseForm">
+                <div class="form-group">
+                    <label>Endereço</label>
+                    <input type="text" name="usuario.Logradouro" id="logradouro" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Numero</label>
+                    <input type="text" name="usuario.Numero" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Complemento</label>
+                    <input type="text" name="usuario.Complemento" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Bairro</label>
+                    <input type="text" name="usuario.Bairro" id="bairro" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Cidade</label>
+                    <input type="text" name="usuario.Cidade" id="cidade" class="form-control" />
+                </div> 
+                <div class="form-group">
+                    <label>UF</label>
+                    <input type="text" name="usuario.Uf" id="uf" class="form-control" />
+                </div>
+            </div>
         </div>
         <div class="form-group">
             <label for="senha">Senha</label>
@@ -36,6 +76,26 @@
 </div>
 
 <script>
+    function buscaEndereco() {
+        let cep = document.querySelector("#Cep");
+        $.getJSON("https://viacep.com.br/ws/" + cep.value + "/json/",
+            function (resp) {
+                if (resp.erro) {
+                    // cep não encontrado
+                    document.querySelector("#ender").innerHTML="Cep não encontrado";
+                    $('#collapseExample').collapse('show');
+                    $('#collapseForm').collapse('hide');
+                } else {
+                    // preenche os campos do endereço
+                    document.querySelector("#logradouro").value = resp.logradouro;
+                    document.querySelector("#bairro").value = resp.bairro;
+                    document.querySelector("#cidade").value = resp.localidade;
+                    document.querySelector("#uf").value = resp.uf;
+                    $('#collapseExample').collapse('hide');
+                    $('#collapseForm').collapse('show');
+                }
+            });
+    }
 
     function valida(){
         let senha = document.getElementById("senha");
@@ -45,7 +105,7 @@
             alert("A senha deve conter no mínimo 4 caracteres.");
             return false
         }
-        
+
         if(senha.value != confirmacao.value){
             alert('A senha e a confirmação devem ser iguais.');
             return false;

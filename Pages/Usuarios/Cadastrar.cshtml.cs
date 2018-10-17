@@ -10,6 +10,8 @@ namespace FirstProject.Pages.Usuarios
 {
     public class CadastrarModel : PageModel
     {
+        public static List<Usuario> Usuarios = new List<Usuario>();
+
         [BindProperty(SupportsGet = true)]
         public Usuario Usuario { get; set; }
 
@@ -17,6 +19,13 @@ namespace FirstProject.Pages.Usuarios
         {
             if(Usuario == null){
                 Usuario = new Usuario();
+            }
+        }
+
+        [HttpPost]
+        public void OnPost(){
+            if(ModelState.IsValid){
+                Usuarios.Add(Usuario);
             }
         }
     }
