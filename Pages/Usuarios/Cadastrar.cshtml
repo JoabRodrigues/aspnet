@@ -6,6 +6,7 @@
 
 <div class="container">
     <h2>Cadastrar</h2>
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <form method="post" onsubmit="return valida()">
         <div class="form-group">
             <label asp-for="Usuario.Nome">Nome</label>
@@ -20,6 +21,7 @@
         <div class="form-group">
             <label for="cpf">CPF</label>
             <input type="text" class="form-control" id="cpf" name="Usuario.Cpf" placeholder="CPF" value="@Model.Usuario.Cpf" />
+            <span asp-validation-for="Usuario.Cpf" class="text-danger"></span>
         </div>
         <div class="form-group">
             <label for="datanascimento">Data Nascimento</label>
@@ -28,7 +30,7 @@
         <div class="form-group">
             <label>CEP</label>
             <input type="number" name="Cep" id="Cep" class="form-control" placeholder="CEP" />
-            <button class="btn btn-primary"  type="button" onclick="buscaEndereco()">Buscar</button>
+            <button class="btn btn-primary" type="button" onclick="buscaEndereco()">Buscar</button>
             <div class="collapse" id="collapseExample">
                 <div class="card card-body" id="ender">
                     texto qualquer
@@ -56,7 +58,7 @@
                 <div class="form-group">
                     <label>Cidade</label>
                     <input type="text" name="usuario.Cidade" id="cidade" class="form-control" />
-                </div> 
+                </div>
                 <div class="form-group">
                     <label>UF</label>
                     <input type="text" name="usuario.Uf" id="uf" class="form-control" />

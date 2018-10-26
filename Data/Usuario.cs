@@ -10,6 +10,8 @@ namespace FirstProject.Data
         public string Nome { get; set; }
         [RegularExpression(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$",ErrorMessage ="Favor colocar um e-mail válido.")]
         public string Email { get; set; }
+
+        [RegularExpression(@"\d\d\d\d\d\d\d\d\d-\d\d", ErrorMessage = "Formato do CPF inválido!")]
         public string Cpf { get; set; }
         public string DataNascimento { get; set; }
         public string Senha { get; set; }
