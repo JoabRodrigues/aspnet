@@ -1,4 +1,5 @@
-﻿
+﻿@using Microsoft.AspNetCore.Http;
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">Bootstrap 4</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
@@ -6,22 +7,31 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a asp-page="/Index" class="nav-link">Home</a>
-            </li>
-            <li class="nav-item">
-                <a asp-page="/About" class="nav-link">About</a>
-            </li>
-            <li class="nav-item">
-                <a asp-page="/Contact" class="nav-link">Contact</a>
-            </li>
-            <li class="nav-item">
-                <a asp-page="/Usuarios/Cadastrar" class="nav-link">Cadastrar Usuário</a>
-            </li>
+            @if (Context.Session.GetString("usuarioNome") != null)
+            {
+                <li class="nav-item">
+                    <a asp-page="/Index" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a asp-page="/About" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a asp-page="/Contact" class="nav-link">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a asp-page="/Usuarios/Cadastrar" class="nav-link">Cadastrar Usuário</a>
+                </li>
+            }
+            else
+            {
+                <li class="nav-item">
+                    <a asp-page="/Usuarios/Login" class="nav-link">Login</a>
+                </li>
+            }
+
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        <div class="form-inline my-2 my-lg-0">
+            <div class="container-fluid body-content">@Context.Session.GetString("usuarioNome") | <a asp-page="/Usuarios/Edit   " asp-route-id="@Context.Session.GetInt32("usuarioId")">Edit</a> </div>
+        </div>
     </div>
 </nav>

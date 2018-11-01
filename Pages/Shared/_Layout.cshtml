@@ -1,5 +1,4 @@
 ﻿@using Microsoft.AspNetCore.Http;
-@inject IHttpContextAccessor HttpContextAccessor
 
 <!DOCTYPE html>
 <html>
@@ -22,7 +21,8 @@
 <body>
     <partial name="Menu" />
 
-    @HttpContextAccessor.HttpContext.Session.GetString("usuarioNome");
+    
+
     <div class="container-fluid body-content">
         @RenderBody()
     </div>

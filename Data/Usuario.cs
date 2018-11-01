@@ -22,5 +22,6 @@ namespace FirstProject.Data
         public string Bairro { get; set; }
         public string Cidade { get; set; }
         public string Uf { get; set; }
+        public int Tipo { get;set; }
     }
 }
