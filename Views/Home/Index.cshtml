@@ -1,0 +1,13 @@
+﻿@model FirstProject.Controllers.MeuModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<form method="post">
+    Nome: <input type="text" asp-for="Model.nome" />
+    <br />
+    Sexo: @Html.DropDownListFor(m=>m.sexo,(SelectList)ViewData["opcoes"])
+</form>
+
