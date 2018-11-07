@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using FirstProject.Models;
+using FirstProject.Business;
 
 namespace FirstProject
 {
@@ -43,6 +44,8 @@ namespace FirstProject
 
             services.AddDbContext<FirstProjectContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("FirstProjectContext")));
+
+            services.AddScoped<IJogoService, JogoService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

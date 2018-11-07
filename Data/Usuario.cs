@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace FirstProject.Data
@@ -23,5 +24,7 @@ namespace FirstProject.Data
         public string Cidade { get; set; }
         public string Uf { get; set; }
         public int Tipo { get;set; }
+        public ICollection<MesaUsuario> MesasUsuarios { get; set; }
+
     }
 }
