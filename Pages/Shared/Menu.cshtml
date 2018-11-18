@@ -1,7 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Http;
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Bootstrap 4</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -11,12 +10,6 @@
             {
                 <li class="nav-item">
                     <a asp-page="/Index" class="nav-link">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a asp-page="/About" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a asp-page="/Contact" class="nav-link">Contact</a>
                 </li>
                 <li class="nav-item">
                     <a asp-page="/Usuarios/Cadastrar" class="nav-link">Cadastrar Usuário</a>
@@ -31,7 +24,11 @@
 
         </ul>
         <div class="form-inline my-2 my-lg-0">
-            <div class="container-fluid body-content">@Context.Session.GetString("usuarioNome") | <a asp-page="/Usuarios/Edit   " asp-route-id="@Context.Session.GetInt32("usuarioId")">Edit</a> </div>
+            @if (Context.Session.GetString("usuarioNome") != null)
+            {
+                <div class="container-fluid body-content">@Context.Session.GetString("usuarioNome") | <a asp-page="/Usuarios/Edit   " asp-route-id="@Context.Session.GetInt32("usuarioId")">Edit</a> </div>
+                <div class="container-fluid body-content"><a asp-page="/Usuarios/LogOut">Sair</a> </div>
+            }
         </div>
     </div>
 </nav>

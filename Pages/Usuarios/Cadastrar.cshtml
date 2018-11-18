@@ -38,32 +38,30 @@
             </div>
         </div>
         <div class="form-group">
-            <div class="collapse" id="collapseForm">
-                <div class="form-group">
-                    <label>Endereço</label>
-                    <input type="text" name="usuario.Logradouro" id="logradouro" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <label>Numero</label>
-                    <input type="text" name="usuario.Numero" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <label>Complemento</label>
-                    <input type="text" name="usuario.Complemento" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <label>Bairro</label>
-                    <input type="text" name="usuario.Bairro" id="bairro" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <label>Cidade</label>
-                    <input type="text" name="usuario.Cidade" id="cidade" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <label>UF</label>
-                    <input type="text" name="usuario.Uf" id="uf" class="form-control" />
-                </div>
+            <div class="form-group">
+                <label>Endereço</label>
+                <input type="text" name="usuario.Logradouro" id="logradouro" class="form-control" />
             </div>
+            <div class="form-group">
+                <label>Numero</label>
+                <input type="text" name="usuario.Numero" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Complemento</label>
+                <input type="text" name="usuario.Complemento" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Bairro</label>
+                <input type="text" name="usuario.Bairro" id="bairro" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Cidade</label>
+                <input type="text" name="usuario.Cidade" id="cidade" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>UF</label>
+                <input type="text" name="usuario.Uf" id="uf" class="form-control" />
+            </div>          
         </div>
         <div class="form-group">
             <label for="senha">Senha</label>
@@ -85,16 +83,12 @@
                 if (resp.erro) {
                     // cep não encontrado
                     document.querySelector("#ender").innerHTML="Cep não encontrado";
-                    $('#collapseExample').collapse('show');
-                    $('#collapseForm').collapse('hide');
                 } else {
                     // preenche os campos do endereço
                     document.querySelector("#logradouro").value = resp.logradouro;
                     document.querySelector("#bairro").value = resp.bairro;
                     document.querySelector("#cidade").value = resp.localidade;
                     document.querySelector("#uf").value = resp.uf;
-                    $('#collapseExample').collapse('hide');
-                    $('#collapseForm').collapse('show');
                 }
             });
     }
